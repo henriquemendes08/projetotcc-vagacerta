@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estacionamentos</title>
+  <link rel="stylesheet" href="/View/css/telaDeLogin.css" />
+</head>
+<body>
+
+  <header>
+    <button id="menuToggle" aria-label="Abrir menu">☰ Menu</button>
+    <h1>ESTACIONAMENTOS</h1>
+    
+  </header>
+  
+  
+  <aside id="sidebar" class="closed">
+    <p>Bem-Vindo a <strong>Vaga Certa</strong></p>
+    <button id="closeSidebar" aria-label="Fechar menu">✕</button>
+    <div class="logo">
+      <img src="/View/img/logaVagaCerta.jpg"/>
+    </div>
+    <nav>
+      <a href="#">🏠 Home</a>
+      <a href="#">💰 Finança</a>
+      <a href="#">🅿️ Vagas</a>
+      <a href="#">🧺 Estoque</a>
+      <a href="#">⚙️ Opções</a>
+      <a href="#">👤 Perfil</a>
+    </nav>
+  </aside>
+
+  <main>
+    <div class="park-img">
+      <img src="/View/img/logaVagaCerta.jpg" />
+    </div>
+
+    <section class="login-container">
+      <form>
+        <label for="login">Login</label>
+        <input type="text" id="login" placeholder="Digite seu login" required />
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" required />
+
+        <button type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <div class="park-img">
+      <img src="/View/img/logaVagaCerta.jpg"  />
+    </div>
+  </main>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.remove('closed');
+    });
+
+    closeSidebar.addEventListener('click', () => {
+      sidebar.classList.add('closed');
+    });
+  </script>
+
+</body>
+</html>
