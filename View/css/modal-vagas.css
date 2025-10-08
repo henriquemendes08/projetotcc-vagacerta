@@ -1,0 +1,159 @@
+/* Fonte global */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body, *:not(dialog) {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------------------
+   Menu superior
+-------------------- */
+.navbar-ajuda {
+    background-color: #202020;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-ajuda {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.nav-ajuda a {
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.nav-ajuda a.active, .nav-ajuda a:hover {
+    background-color: #6366f1;
+}
+
+/* --------------------
+   Park container (áreas de vagas)
+-------------------- */
+.park-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.area-01, .area-02, .area-03 {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.area-vagaG, .area-vagaP {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.open-modal img {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.open-modal img:hover {
+    transform: scale(1.1);
+}
+
+.area-vagaP img, .area-vagaG img {
+    width: 50px;
+    height: 50px;
+}
+
+/* --------------------
+   Modais
+-------------------- */
+.modal-container{
+    background-color: #202020;
+    border: solid 1px #fff;
+    border-radius: 24px;
+    padding: 18px;
+    width: 350px;
+}
+
+dialog {
+    border: none;
+    border-radius: 24px;
+    padding: 18px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.close-modal {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 18px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.input-group input, .input-group select {
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: 1px solid #6366f1;
+}
+
+.button-modal {
+    background-color: #69ce29;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.3s;
+}
+
+.button-modal:hover {
+    background-color: #55a826;
+}

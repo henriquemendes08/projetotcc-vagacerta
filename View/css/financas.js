@@ -1,12 +1,11 @@
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
     carregarTransacoes(); // Carrega transações financeiras
-    configurarEventos();
+    configurarEventos && configurarEventos();
 });
 
 // Mostrar feedback visual
 function mostrarFeedback(mensagem) {
-    // Criar elemento de feedback
     const feedback = document.createElement('div');
     feedback.style.cssText = `
         position: fixed;
@@ -24,15 +23,10 @@ function mostrarFeedback(mensagem) {
         transition: transform 0.3s ease;
     `;
     feedback.textContent = mensagem;
-    
     document.body.appendChild(feedback);
-    
-    // Animar entrada
     setTimeout(() => {
         feedback.style.transform = 'translateX(0)';
     }, 100);
-    
-    // Remover após 3 segundos
     setTimeout(() => {
         feedback.style.transform = 'translateX(100%)';
         setTimeout(() => {
@@ -40,7 +34,6 @@ function mostrarFeedback(mensagem) {
         }, 300);
     }, 3000);
 }
-
 
 let transacoes = [];
 
@@ -70,12 +63,12 @@ function adicionarVenda() {
     const produto = document.getElementById('produto-vendido').value;
     const valor = parseFloat(document.getElementById('valor-venda').value);
     const quantidade = parseInt(document.getElementById('quantidade-venda').value);
-    
+
     if (!produto || !valor || !quantidade) {
         mostrarFeedback('Preencha todos os campos da venda!');
         return;
     }
-    
+
     const transacao = {
         id: Date.now(),
         tipo: 'venda',
@@ -84,7 +77,7 @@ function adicionarVenda() {
         data: new Date().toISOString(),
         categoria: 'loja'
     };
-    
+
     transacoes.push(transacao);
     salvarTransacoes();
     atualizarResumoFinanceiro();
@@ -98,12 +91,12 @@ function adicionarReceitaVaga() {
     const vaga = document.getElementById('vaga-ocupada').value;
     const valor = parseFloat(document.getElementById('valor-vaga').value);
     const tempo = parseFloat(document.getElementById('tempo-vaga').value);
-    
+
     if (!vaga || !valor || !tempo) {
         mostrarFeedback('Preencha todos os campos da vaga!');
         return;
     }
-    
+
     const transacao = {
         id: Date.now(),
         tipo: 'vaga',
@@ -112,7 +105,7 @@ function adicionarReceitaVaga() {
         data: new Date().toISOString(),
         categoria: 'estacionamento'
     };
-    
+
     transacoes.push(transacao);
     salvarTransacoes();
     atualizarResumoFinanceiro();
@@ -126,12 +119,12 @@ function adicionarDespesa() {
     const descricao = document.getElementById('descricao-despesa').value;
     const valor = parseFloat(document.getElementById('valor-despesa').value);
     const categoria = document.getElementById('categoria-despesa').value;
-    
+
     if (!descricao || !valor || !categoria) {
         mostrarFeedback('Preencha todos os campos da despesa!');
         return;
     }
-    
+
     const transacao = {
         id: Date.now(),
         tipo: 'despesa',
@@ -140,7 +133,7 @@ function adicionarDespesa() {
         data: new Date().toISOString(),
         categoria: categoria
     };
-    
+
     transacoes.push(transacao);
     salvarTransacoes();
     atualizarResumoFinanceiro();
@@ -154,17 +147,17 @@ function atualizarResumoFinanceiro() {
     const receitas = transacoes
         .filter(t => t.tipo === 'venda' || t.tipo === 'vaga')
         .reduce((total, t) => total + t.valor, 0);
-    
+
     const despesas = transacoes
         .filter(t => t.tipo === 'despesa')
         .reduce((total, t) => total + t.valor, 0);
-    
+
     const saldo = receitas - despesas;
-    
+
     totalReceitas.textContent = `R$ ${receitas.toFixed(2).replace('.', ',')}`;
     totalDespesas.textContent = `R$ ${despesas.toFixed(2).replace('.', ',')}`;
     saldoTotal.textContent = `R$ ${saldo.toFixed(2).replace('.', ',')}`;
-    
+
     // Mudar cor do saldo baseado no valor
     if (saldo > 0) {
         saldoTotal.style.color = '#28a745';
@@ -180,15 +173,15 @@ function renderizarHistorico() {
     if (transacoes.length === 0) {
         tabelaHistorico.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #ccc;">
-                <i class="bi bi-inbox" style="font-size: 48px; margin-bottom: 15px; color: #003785;"></i>
+                <span style="font-size: 48px; margin-bottom: 15px; color: #003785;">📦</span>
                 <p>Nenhuma transação registrada ainda.</p>
             </div>
         `;
         return;
     }
-    
+
     const transacoesOrdenadas = [...transacoes].sort((a, b) => new Date(b.data) - new Date(a.data));
-    
+
     let html = `
         <table>
             <thead>
@@ -203,13 +196,13 @@ function renderizarHistorico() {
             </thead>
             <tbody>
     `;
-    
+
     transacoesOrdenadas.forEach(transacao => {
         const data = new Date(transacao.data).toLocaleDateString('pt-BR');
         const hora = new Date(transacao.data).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
         const valorFormatado = `R$ ${transacao.valor.toFixed(2).replace('.', ',')}`;
         const badgeClass = `badge-${transacao.tipo}`;
-        
+
         html += `
             <tr>
                 <td>${data} ${hora}</td>
@@ -219,18 +212,18 @@ function renderizarHistorico() {
                 <td style="color: ${transacao.tipo === 'despesa' ? '#dc3545' : '#28a745'}">${valorFormatado}</td>
                 <td>
                     <button onclick="removerTransacao(${transacao.id})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
-                        <i class="bi bi-trash"></i>
+                        🗑️
                     </button>
                 </td>
             </tr>
         `;
     });
-    
+
     html += `
             </tbody>
         </table>
     `;
-    
+
     tabelaHistorico.innerHTML = html;
 }
 
@@ -249,13 +242,13 @@ function removerTransacao(id) {
 function filtrarHistorico() {
     const tipoFiltro = document.getElementById('filtro-tipo').value;
     const dataFiltro = document.getElementById('filtro-data').value;
-    
+
     let transacoesFiltradas = [...transacoes];
-    
+
     if (tipoFiltro) {
         transacoesFiltradas = transacoesFiltradas.filter(t => t.tipo === tipoFiltro);
     }
-    
+
     if (dataFiltro) {
         const dataFiltroObj = new Date(dataFiltro);
         transacoesFiltradas = transacoesFiltradas.filter(t => {
@@ -263,20 +256,19 @@ function filtrarHistorico() {
             return dataTransacao.toDateString() === dataFiltroObj.toDateString();
         });
     }
-    
-    // Renderizar com a opção filtro aplicada
+
     if (transacoesFiltradas.length === 0) {
         tabelaHistorico.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #ccc;">
-                <i class="bi bi-search" style="font-size: 48px; margin-bottom: 15px; color: #003785;"></i>
+                <span style="font-size: 48px; margin-bottom: 15px; color: #003785;">🔍</span>
                 <p>Nenhuma transação encontrada com os filtros aplicados.</p>
             </div>
         `;
         return;
     }
-    
+
     const transacoesOrdenadas = transacoesFiltradas.sort((a, b) => new Date(b.data) - new Date(a.data));
-    
+
     let html = `
         <table>
             <thead>
@@ -291,13 +283,13 @@ function filtrarHistorico() {
             </thead>
             <tbody>
     `;
-    
+
     transacoesOrdenadas.forEach(transacao => {
         const data = new Date(transacao.data).toLocaleDateString('pt-BR');
         const hora = new Date(transacao.data).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
         const valorFormatado = `R$ ${transacao.valor.toFixed(2).replace('.', ',')}`;
         const badgeClass = `badge-${transacao.tipo}`;
-        
+
         html += `
             <tr>
                 <td>${data} ${hora}</td>
@@ -307,18 +299,18 @@ function filtrarHistorico() {
                 <td style="color: ${transacao.tipo === 'despesa' ? '#dc3545' : '#28a745'}">${valorFormatado}</td>
                 <td>
                     <button onclick="removerTransacao(${transacao.id})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
-                        <i class="bi bi-trash"></i>
+                        🗑️
                     </button>
                 </td>
             </tr>
         `;
     });
-    
+
     html += `
             </tbody>
         </table>
     `;
-    
+
     tabelaHistorico.innerHTML = html;
 }
 
@@ -352,15 +344,15 @@ function limparFormularioDespesa() {
 function gerarRelatorioDiario() {
     const hoje = new Date().toISOString().split('T')[0];
     const transacoesHoje = transacoes.filter(t => t.data.startsWith(hoje));
-    
+
     if (transacoesHoje.length === 0) {
         alert('Nenhuma transação registrada hoje.');
         return;
     }
-    
+
     const receitas = transacoesHoje.filter(t => t.tipo === 'venda' || t.tipo === 'vaga').reduce((total, t) => total + t.valor, 0);
     const despesas = transacoesHoje.filter(t => t.tipo === 'despesa').reduce((total, t) => total + t.valor, 0);
-    
+
     const relatorio = `
 RELATÓRIO DIÁRIO - ${new Date().toLocaleDateString('pt-BR')}
 
@@ -370,27 +362,27 @@ Saldo: R$ ${(receitas - despesas).toFixed(2).replace('.', ',')}
 
 Total de transações: ${transacoesHoje.length}
     `;
-    
+
     alert(relatorio);
 }
 
 function gerarRelatorioMensal() {
     const mesAtual = new Date().getMonth();
     const anoAtual = new Date().getFullYear();
-    
+
     const transacoesMes = transacoes.filter(t => {
         const dataTransacao = new Date(t.data);
         return dataTransacao.getMonth() === mesAtual && dataTransacao.getFullYear() === anoAtual;
     });
-    
+
     if (transacoesMes.length === 0) {
         alert('Nenhuma transação registrada este mês.');
         return;
     }
-    
+
     const receitas = transacoesMes.filter(t => t.tipo === 'venda' || t.tipo === 'vaga').reduce((total, t) => total + t.valor, 0);
     const despesas = transacoesMes.filter(t => t.tipo === 'despesa').reduce((total, t) => total + t.valor, 0);
-    
+
     const relatorio = `
 RELATÓRIO MENSAL - ${new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })}
 
@@ -400,7 +392,7 @@ Saldo: R$ ${(receitas - despesas).toFixed(2).replace('.', ',')}
 
 Total de transações: ${transacoesMes.length}
     `;
-    
+
     alert(relatorio);
 }
 
@@ -414,7 +406,7 @@ function exportarDados() {
         },
         dataExportacao: new Date().toISOString()
     };
-    
+
     const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -424,7 +416,7 @@ function exportarDados() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    
+
     mostrarFeedback('Dados exportados com sucesso!');
 }
 

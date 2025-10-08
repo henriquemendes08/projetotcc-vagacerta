@@ -1,465 +1,561 @@
-/* import do google fonts (usar em todos os css como font principal - font-family:'Poppins', sans-serif; - ) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-body{
-    background-color: #202020;
-    font-family: 'Poppins', sans-serif;
+:root {
+  --azul-escuro-1: #0d2a4f;
+  --azul-medio: #1a3a75;
+  --laranja-escuro: #cc5a30;
+  --branco: #f0f0f0;
+  --cinza-escuro: #2e2e2e;
+  --cinza-medio: #444444;
+  --fundo-degrade: linear-gradient(135deg, var(--azul-escuro-1), var(--azul-medio));
 }
 
-/* Sobrescrever o comportamento do menu lateral para empurrar o conteúdo */
-.menu-container {
-    position: relative;
-    z-index: 1;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.menu-lateral {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    height: 100vh;
-    float: left;
-    z-index: 2;
+body {
+  background: var(--fundo-degrade);
+  color: var(--branco);
+  min-height: 100vh;
 }
 
-/* Garantir que os links do menu funcionem corretamente */
-.menu-lateral a {
-    pointer-events: auto !important;
-    cursor: pointer !important;
+/* NAVBAR SUPERIOR */
+.navbar-ajuda {
+  background: linear-gradient(90deg, var(--azul-escuro-1) 60%, var(--azul-medio) 100%);
+  padding: 0 0 18px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* Container principal que se ajusta ao menu */
+.nav-ajuda {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 18px 0 0 0;
+}
+
+.nav-ajuda a {
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.08rem;
+  position: relative;
+  padding: 6px 10px;
+  transition: color 0.2s;
+}
+
+.nav-ajuda a::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: var(--laranja-escuro);
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: width 0.3s;
+}
+
+.nav-ajuda a:hover,
+.nav-ajuda a:focus {
+  color: var(--laranja-escuro);
+}
+
+.nav-ajuda a:hover::after,
+.nav-ajuda a:focus::after {
+  width: 100%;
+}
+
+.nav-ajuda a.active {
+  color: var(--laranja-escuro);
+  font-weight: 700;
+}
+
+.nav-ajuda a.active::after {
+  width: 100%;
+  background: var(--laranja-escuro);
+}
+
+header.navbar-ajuda h1 {
+  text-align: center;
+  color: var(--branco);
+  font-size: 2rem;
+  margin-top: 10px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* CONTEÚDO PRINCIPAL */
 .content-wrapper {
-    margin-left: 80px;
-    transition: margin-left 1s ease;
-    min-height: 100vh;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-/* Quando o menu expandir, empurrar o conteúdo */
-.menu-lateral:hover ~ .content-wrapper {
-    margin-left: 300px;
-}
-
-header{
-    background-color: #202020;
-    color: #fff;
-    font-family:'Poppins', sans-serif;
-    font-size: 25px;
-    margin-left: 0;
-    height: 75px;
-    text-align: center;
-    margin-bottom: 80px;
-    border-bottom: solid 4px #003785;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.main-container{
-    display: flex;
-    gap: 30px;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 0 20px;
-}
-
-
-
-/* Sistema de Controle Financeiro */
 .controle-financeiro {
-    background-color: #383838;
-    border: solid 4px #003785;
-    border-radius: 24px;
-    padding: 30px;
-    margin-top: 30px;
+  background-color: var(--cinza-medio);
+  border: solid 4px var(--azul-medio);
+  border-radius: 24px;
+  padding: 30px;
+  margin-top: 30px;
 }
 
 .controle-financeiro h2 {
-    color: #fff;
-    font-size: 24px;
-    margin-bottom: 30px;
-    text-align: center;
-    border-bottom: 2px solid #003785;
-    padding-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  color: var(--branco);
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 2px solid var(--azul-medio);
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Resumo Financeiro */
 .resumo-financeiro {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .card-financeiro {
-    background-color: #202020;
-    border: 2px solid #003785;
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--cinza-escuro);
+  border: 2px solid var(--azul-medio);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-financeiro:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 55, 133, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 55, 133, 0.3);
 }
 
 .card-financeiro.receita {
-    border-color: #28a745;
+  border-color: #28a745;
 }
 
 .card-financeiro.despesa {
-    border-color: #dc3545;
+  border-color: #dc3545;
 }
 
 .card-financeiro.saldo {
-    border-color: #ffc107;
+  border-color: #ffc107;
 }
 
 .card-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
 }
 
 .card-financeiro.receita .card-icon {
-    background-color: #28a745;
-    color: #fff;
+  background-color: #28a745;
+  color: #fff;
 }
 
 .card-financeiro.despesa .card-icon {
-    background-color: #dc3545;
-    color: #fff;
+  background-color: #dc3545;
+  color: #fff;
 }
 
 .card-financeiro.saldo .card-icon {
-    background-color: #ffc107;
-    color: #000;
+  background-color: #ffc107;
+  color: #000;
 }
 
 .card-info h3 {
-    color: #fff;
-    font-size: 16px;
-    margin: 0 0 5px 0;
+  color: var(--branco);
+  font-size: 16px;
+  margin: 0 0 5px 0;
 }
 
 .card-info .valor {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
+  color: var(--branco);
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .card-financeiro.receita .valor {
-    color: #28a745;
+  color: #28a745;
 }
 
 .card-financeiro.despesa .valor {
-    color: #dc3545;
+  color: #dc3545;
 }
 
 .card-financeiro.saldo .valor {
-    color: #ffc107;
+  color: #ffc107;
 }
 
 /* Controles de Transações */
 .controles-transacoes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .secao-transacao {
-    background-color: #202020;
-    border: 2px solid #003785;
-    border-radius: 15px;
-    padding: 20px;
+  background-color: var(--cinza-escuro);
+  border: 2px solid var(--azul-medio);
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .secao-transacao h3 {
-    color: #fff;
-    font-size: 18px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  color: var(--branco);
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .transacao-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .input-transacao {
-    padding: 10px;
-    border: 1px solid #003785;
-    border-radius: 8px;
-    background-color: #383838;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
+  padding: 10px;
+  border: 1px solid var(--azul-medio);
+  border-radius: 8px;
+  background-color: var(--cinza-medio);
+  color: var(--branco);
+  font-family: 'Poppins', sans-serif;
 }
 
 .input-transacao::placeholder {
-    color: #ccc;
+  color: #ccc;
 }
 
 .input-transacao:focus {
-    outline: none;
-    border-color: #0052a3;
-    box-shadow: 0 0 5px rgba(0, 55, 133, 0.3);
+  outline: none;
+  border-color: #0052a3;
+  box-shadow: 0 0 5px rgba(0, 55, 133, 0.3);
 }
 
 .btn-transacao {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btn-transacao.receita {
-    background-color: #28a745;
-    color: #fff;
+  background-color: #28a745;
+  color: #fff;
 }
 
 .btn-transacao.receita:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 .btn-transacao.despesa {
-    background-color: #dc3545;
-    color: #fff;
+  background-color: #dc3545;
+  color: #fff;
 }
 
 .btn-transacao.despesa:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 
 /* Histórico de Transações */
 .historico-transacoes {
-    background-color: #202020;
-    border: 2px solid #003785;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 30px;
+  background-color: var(--cinza-escuro);
+  border: 2px solid var(--azul-medio);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
 }
 
 .historico-transacoes h3 {
-    color: #fff;
-    font-size: 18px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  color: var(--branco);
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .filtros-historico {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .filtro {
-    padding: 8px 12px;
-    border: 1px solid #003785;
-    border-radius: 6px;
-    background-color: #383838;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
+  padding: 8px 12px;
+  border: 1px solid var(--azul-medio);
+  border-radius: 6px;
+  background-color: var(--cinza-medio);
+  color: var(--branco);
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn-filtro, .btn-limpar {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
-    background-color: #003785;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: background-color 0.3s ease;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--azul-medio);
+  color: var(--branco);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-filtro:hover {
-    background-color: #0052a3;
+  background-color: #0052a3;
 }
 
 .btn-limpar {
-    background-color: #6c757d;
+  background-color: #6c757d;
 }
 
 .btn-limpar:hover {
-    background-color: #5a6268;
+  background-color: #5a6268;
 }
 
 .tabela-historico {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .tabela-historico table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #383838;
-    border-radius: 8px;
-    overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--cinza-medio);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .tabela-historico th,
 .tabela-historico td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #003785;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--azul-medio);
 }
 
 .tabela-historico th {
-    background-color: #003785;
-    color: #fff;
-    font-weight: 600;
+  background-color: var(--azul-medio);
+  color: var(--branco);
+  font-weight: 600;
 }
 
 .tabela-historico td {
-    color: #fff;
+  color: var(--branco);
 }
 
 .tabela-historico tr:hover {
-    background-color: #2a2a2a;
+  background-color: #2a2a2a;
 }
 
 .badge-tipo {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .badge-venda {
-    background-color: #28a745;
-    color: #fff;
+  background-color: #28a745;
+  color: #fff;
 }
 
 .badge-vaga {
-    background-color: #17a2b8;
-    color: #fff;
+  background-color: #17a2b8;
+  color: #fff;
 }
 
 .badge-despesa {
-    background-color: #dc3545;
-    color: #fff;
+  background-color: #dc3545;
+  color: #fff;
 }
 
 /* Relatórios */
 .relatorios {
-    background-color: #202020;
-    border: 2px solid #003785;
-    border-radius: 15px;
-    padding: 20px;
+  background-color: var(--cinza-escuro);
+  border: 2px solid var(--azul-medio);
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .relatorios h3 {
-    color: #fff;
-    font-size: 18px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  color: var(--branco);
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .botoes-relatorio {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .btn-relatorio {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #003785;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--azul-medio);
+  color: var(--branco);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-relatorio:hover {
-    background-color: #0052a3;
+  background-color: #0052a3;
+}
+
+/* MODAL */
+.modal-container {
+  background: var(--cinza-medio);
+  border-radius: 16px;
+  border: 2px solid var(--azul-medio);
+  padding: 24px;
+  max-width: 400px;
+  margin: 40px auto;
+  color: var(--branco);
+  box-shadow: 0 0 16px rgba(0,0,0,0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.modal-title {
+  font-size: 1.3rem;
+  color: var(--laranja-escuro);
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  color: var(--branco);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  font-size: 1rem;
+}
+
+.modal-total {
+  margin: 18px 0;
+  font-size: 1.1rem;
+  color: var(--branco);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.btn-cancelar {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-cancelar:hover {
+  background: #c82333;
+}
+
+.btn-confirmar {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-confirmar:hover {
+  background: #218838;
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-    .main-container{
-        flex-direction: column;
-    }
-    
-    .carrinho-section{
-        position: static;
-    }
-    
-    .produtos-grid{
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-    
-    header{
-        margin-left: 0;
-        font-size: 20px;
-    }
-    
-    /* Ajustes para telas pequenas */
-    .content-wrapper {
-        margin-left: 0;
-    }
-    
-    .menu-lateral:hover ~ .content-wrapper {
-        margin-left: 0;
-    }
-    
-    .menu-lateral {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        float: none !important;
-    }
-    
-    /* Ajustes para o controle financeiro em telas pequenas */
-    .resumo-financeiro {
-        grid-template-columns: 1fr;
-    }
-    
-    .controles-transacoes {
-        grid-template-columns: 1fr;
-    }
-    
-    .filtros-historico {
-        flex-direction: column;
-    }
-    
-    .botoes-relatorio {
-        flex-direction: column;
-    }
+@media (max-width: 900px) {
+  .nav-ajuda {
+    gap: 12px;
+    font-size: 0.98rem;
+    flex-wrap: wrap;
+    padding: 12px 0 0 0;
+  }
+  header.navbar-ajuda h1 {
+    font-size: 1.2rem;
+    margin-top: 8px;
+  }
+  .content-wrapper {
+    padding: 0 6px;
+    max-width: 98vw;
+  }
+  .controle-financeiro {
+    padding: 16px 8px;
+  }
+  .resumo-financeiro,
+  .controles-transacoes {
+    grid-template-columns: 1fr;
+  }
+  .botoes-relatorio {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Imagens dentro do conteúdo financeiro */
+.controle-financeiro img,
+.historico-transacoes img,
+.relatorios img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 18px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }

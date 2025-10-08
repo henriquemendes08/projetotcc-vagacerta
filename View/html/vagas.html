@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagas</title>
+    <link rel="stylesheet" href="../css/vagas.css">
+</head>
+<body>
+    <header class="navbar-ajuda">
+        <nav class="nav-ajuda">
+            <a href="#">Home</a>
+            <a href="financas.html">Finança</a>
+            <a href="telaCadastroVeiculos.html">Veículos</a>
+            <a href="vagas.html" class="active">Vagas</a>
+            <a href="estoque.html">Estoque</a>
+            <a href="#">Opções</a>
+            <a href="#">Perfil</a>
+            <a href="ajuda.html">Ajuda</a>
+        </nav>
+        <h1>Vagas</h1>
+    </header>
+
+    <main>
+        <div class="park-container">
+
+            <!-- Área 1 - Vagas médias -->
+            <div class="area-01">
+                <div class="open-modal" data-modal="modal-1">
+                    <img src="/View/img/vagaM_03.png" alt="Vaga 01">
+                </div>
+                <div class="open-modal" data-modal="modal-2">
+                    <img src="/View/img/vagaM_03.png" alt="Vaga 02">
+                </div>
+                <div class="open-modal" data-modal="modal-3">
+                    <img src="/View/img/vagaM_03.png" alt="Vaga 03">
+                </div>
+                <div class="open-modal" data-modal="modal-4">
+                    <img src="/View/img/vagaM_03.png" alt="Vaga 04">
+                </div>
+            </div>
+
+            <!-- Área 2 - Vagas grandes e pequenas -->
+            <div class="area-02">
+                <div class="area-vagaG">
+                    <div class="open-modal" data-modal="modal-5">
+                        <img src="/View/img/vagaG.png" alt="Vaga 05">
+                    </div>
+                    <div class="open-modal" data-modal="modal-6">
+                        <img src="/View/img/vagaG.png" alt="Vaga 06">
+                    </div>
+                    <div class="open-modal" data-modal="modal-7">
+                        <img src="/View/img/vagaG.png" alt="Vaga 07">
+                    </div>
+                </div>
+
+                <div class="area-vagaP">
+                    <div class="corredor-01">
+                        <div class="open-modal" data-modal="modal-8">
+                            <img src="/View/img/vagaP.png" alt="Vaga 08">
+                        </div>
+                        <div class="open-modal" data-modal="modal-9">
+                            <img src="/View/img/vagaP.png" alt="Vaga 09">
+                        </div>
+                        <div class="open-modal" data-modal="modal-10">
+                            <img src="/View/img/vagaP.png" alt="Vaga 10">
+                        </div>
+                    </div>
+                    <div class="corredor-02">
+                        <div class="open-modal" data-modal="modal-11">
+                            <img src="/View/img/vagaP.png" alt="Vaga 11">
+                        </div>
+                        <div class="open-modal" data-modal="modal-12">
+                            <img src="/View/img/vagaP.png" alt="Vaga 12">
+                        </div>
+                        <div class="open-modal" data-modal="modal-13">
+                            <img src="/View/img/vagaP.png" alt="Vaga 13">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área 3 - Vagas médias -->
+            <div class="area-03">
+                <div class="open-modal" data-modal="modal-14">
+                    <img src="/View/img/vagaM_03.png" alt="Vaga 14">
+                </div>
+                <div class="open-modal" data-modal="modal-15">
+                    <img src="/View/img/vagaM_03.png" alt="Vaga 15">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MODAIS: 1 a 15 -->
+        <!-- Cada modal tem inputs de texto para marca, modelo, placa, hora e data -->
+        <!-- O layout dos inputs segue o CSS que você já tinha -->
+
+        <!-- Exemplo de modal 1 -->
+        <dialog id="modal-1" class="modal-container">
+            <form>
+                <div class="modal-header">
+                    <h1 class="modal-title">Vaga 01</h1>
+                    <button class="close-modal" data-modal="modal-1" type="button">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label for="marca-1">Marca do veículo</label>
+                        <input type="text" id="marca-1" placeholder="Digite a marca" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="modelo-1">Modelo do veículo</label>
+                        <input type="text" id="modelo-1" placeholder="Digite o modelo" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="placa-1">Placa do veículo</label>
+                        <input type="text" id="placa-1" placeholder="Digite a placa" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="hora-1">Horário de entrada</label>
+                        <input type="time" id="hora-1" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="data-1">Data de entrada</label>
+                        <input type="date" id="data-1" required>
+                    </div>
+                    <button type="submit" class="button-modal">Confirmar</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Duplicar modal 1 até modal 15, atualizando IDs e título -->
+        <!-- Modal 2 -->
+        <dialog id="modal-2" class="modal-container">
+            <form>
+                <div class="modal-header">
+                    <h1 class="modal-title">Vaga 02</h1>
+                    <button class="close-modal" data-modal="modal-2" type="button">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label for="marca-2">Marca do veículo</label>
+                        <input type="text" id="marca-2" placeholder="Digite a marca" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="modelo-2">Modelo do veículo</label>
+                        <input type="text" id="modelo-2" placeholder="Digite o modelo" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="placa-2">Placa do veículo</label>
+                        <input type="text" id="placa-2" placeholder="Digite a placa" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="hora-2">Horário de entrada</label>
+                        <input type="time" id="hora-2" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="data-2">Data de entrada</label>
+                        <input type="date" id="data-2" required>
+                    </div>
+                    <button type="submit" class="button-modal">Confirmar</button>
+                </div>
+            </form>
+        </dialog>
+
+        <!-- Faça o mesmo até modal-15, incrementando apenas os números -->
+        <!-- Para não deixar o HTML gigante aqui, você pode copiar e ir alterando os IDs de 3 a 15 -->
+
+    </main>
+
+    <script src="/View/css/modal-vagas.js"></script>
+</body>
+</html>
